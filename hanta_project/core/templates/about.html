@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About us</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link rel="shortcut icon" href="../img/favicon/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito">
+
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Cart</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <table class="table align-middle" id="listaCarrito">
+        <thead>
+          <tr>
+            <th class="text-center">Item</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Quantity</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="d-grid gap-2">
+        <a href="#" class="btn btn-primary text-white text-center">Pay</a>
+        <a href="#" class="btn btn-secondary text-white text-center" id="vaciarCarrito">Clear</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inicio navbar -->
+
+  <header>
+    <nav class="navbar navbar-expand-lg bgh-blue fixed-top">
+      <div class="container px-4 px-lg-5 ">
+        <a class="navbar-brand" href="./index.html"><img src="../img/logo.png" height="50" alt="Hanta Store"></a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation" data-bs-theme="dark"><span class="navbar-toggler-icon "></span></button>
+        <div class="navbar-collapse collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 ">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="./index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="./shop.html">All games</a></li>
+          </ul>
+          <div class="d-flex" style="height: 2.5rem;">
+            <input type="text" class="form-control me-4 me-md-4 me-lg-4 shadow-none " placeholder="Search Game" name=""
+              id="">
+            <div style="width: 12rem;">
+              <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito"
+                aria-controls="carrito">
+                <i class="bi-cart-fill me-1"></i>
+                Cart
+                <span class="badge bg-white text-white ms-1 rounded-pill" id="contador">
+                  <span class="text-dark">0</span>
+                </span>
+              </button>
+            </div>
+          </div>
+          <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4 ">
+            <li class="nav-item"><a class="nav-link" href="./register.html">Sign up</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- Fin navbar -->
+
+
+  <!-- Inicio about us -->
+  <main class="bgh-dark-blue ">
+    <section class="py-5 text-center container mt-5">
+      <div class="row row-cols-1 row-cols-lg-3 py-lg-5">
+        <div class="col text-light py-5 ">
+          <i class="bi bi-people-fill fs-1"></i>
+          <h1>About us</h1>
+          <p>We are 2 computer science students with a small idea, venturing into the world of video game sales,
+            we hope to learn more and more with each customer.</p>
+        </div>
+        <div class="col text-light py-5">
+          <i class="bi bi-eye fs-1"></i>
+          <h2 class="fs-1">Vision</h2>
+          <p>Our purpose is to offer products that generate joy and entertainment in people's daily lives, at affordable
+            and fair prices within the market.</p>
+        </div>
+        <div class="col text-light py-5">
+          <i class="bi bi-flag-fill fs-1"></i>
+          <h1>Mission</h1>
+          <p>
+            We aspire to become, through our customers, a major player in the field of video game sales, with products
+            that convey a unique experience.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Video -->
+    <div class="container ml-5 p-5">
+      <div class="row-cols-1 ">
+
+        <iframe height="500" src="https://www.youtube.com/embed/M2ZfYLpy2UE?si=DeTVpHUzS4Ss4enw"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; muted; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+
+    <!-- Inicio footer -->
+    <div class="bgh-darkest-blue">
+      <div class="container">
+        <footer class="py-5">
+          <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Buy</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">How to buy?</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">List of games</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+              <h5>About Hanta</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About us</a></li>
+                <li class="nav-item mb-2"><a href="./contact.html" class="nav-link p-0 text-body-secondary">Contact us</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Help</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Create a ticket</a></li>
+              </ul>
+            </div>
+
+            <div class="col-md-5 offset-md-1 mb-3">
+              <img class="img-fluid mx-auto d-block" src="../img/logo.png" width="300" alt="">
+              <span class="text-center d-block text-light fw-bold">© Hanta Store 2024</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- Fin footer -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+    crossorigin="anonymous"></script>
+</body>

@@ -1,0 +1,128 @@
+@import url('./satoshi.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Satoshi-Variable';
+}
+
+.btn-th-blue {
+    background-color: #244494;
+}
+
+.bgh-blue {
+    background-color: #244494;
+}
+
+.bgh-dark-blue {
+    background-color: #1C3269;
+}
+
+.bgh-darkest-blue {
+    background-color: #001446;
+}
+
+.border-top-orange {
+    border-top: 5px solid orange;
+}
+
+.card {
+    border: 0px !important;
+    border-radius: 0px !important;
+    box-shadow: 0px 0px 15px 1px #1C3269;
+}
+
+.card img {
+    border-radius: 0px !important;
+}
+
+.searchHanta {
+    background-color: #1C3269 !important;
+    box-shadow: none !important;
+    border: 1px solid white !important;
+}
+
+.searchHanta {
+    color: white !important;
+}
+
+.searchHanta::placeholder {
+    color: white !important;
+    font-weight: bold;
+}
+
+.searchHanta:focus {
+    color: white !important;
+    font-weight: bold;
+}
+
+
+.th-orange {
+    color: orange;
+}
+
+.th-blue {
+    color: #264592;
+}
+
+.size-color--button {
+    height: 2rem;
+    width: 2rem;
+}
+
+.navbar li a {
+    color: white !important;
+}
+
+.navbar li a:hover {
+    color: orange !important;
+    font-weight: bolder;
+}
+
+.nav li a {
+    color: white !important;
+}
+
+.nav li a:hover {
+    color: orange !important;
+    font-weight: bolder;
+}
+
+.navbar-toggler {
+    color: white !important;
+}
+
+.product {
+    background-color: white;
+}
+
+.product:hover {
+    background-color: #E9ECEF;
+    transition: 0.7s;
+    box-shadow: none !important;
+    cursor: pointer;
+}
+
+.product:hover img {
+    filter: grayscale(75%);
+}
+
+.product:hover .price {
+    color: #244494;
+    transition: 0.7s;
+}
+
+
+footer {
+    background-color: #001446;
+}
+
+footer h5 {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+footer a {
+    font-weight: bolder;
+    color: orange !important;
+}
