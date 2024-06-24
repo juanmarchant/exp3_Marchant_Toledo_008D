@@ -1,221 +1,229 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buy games and wallets more cheaper than ever | Hanta Store</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/favicon/favicon.ico' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Buy games and wallets more cheaper than ever | Hanta Store</title>
-  {% load static %}
-  <link rel="shortcut icon" href="{%  static 'img/favicon/favicon.ico' %}" type="image/x-icon">
-  <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
-</head>
-
-<body>
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito">
-
-    <div class="offcanvas-header">
-      <h5 id="offcanvasRightLabel">Cart</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <div class="offcanvas-body">
-      <table class="table align-middle" id="listaCarrito">
-        <thead>
-          <tr>
-            <th class="text-center">Item</th>
-            <th class="text-center">Name</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Quantity</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <div class="d-grid gap-2">
-        <a href="#" class="btn btn-primary text-white text-center">Pay</a>
-        <a href="#" class="btn btn-secondary text-white text-center" id="vaciarCarrito">Clear</a>
+  <body>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Cart</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-    </div>
-  </div>
 
-  <header>
-    <nav class="navbar navbar-expand-lg bgh-blue fixed-top">
-      <div class="container px-4 px-lg-5 ">
-        <a class="navbar-brand" href="./index.html"><img src="{% static "img/logo.png" %}" height="50" alt="Hanta Store"></a>
-        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-          aria-label="Toggle navigation" data-bs-theme="dark"><span class="navbar-toggler-icon "></span></button>
-        <div class="navbar-collapse collapse " id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 ">
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url "index" %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url "about" %}">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url "shop" %}">All games</a></li>
-          </ul>
-          <div class="d-flex" style="height: 2.5rem;">
-            <input type="text" class="form-control searchHanta me-4 me-md-4 me-lg-4" placeholder="Search Game" name=""
-              id="">
-            <div style="width: 12rem;">
-              <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito"
-                aria-controls="carrito">
-                <i class="bi-cart-fill me-1"></i>
-                Cart
-                <span class="badge bg-white text-white ms-1 rounded-pill" id="contador"> <span
-                    class="text-dark">0</span></span>
-              </button>
-            </div>
-          </div>
-          <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4 ">
-            <li class="nav-item"><a class="nav-link" href="{% url "register" %}">Sign up</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-
-
-  <main class="bgh-dark-blue ">
-    <div id="carouselExampleIndicators" class="carousel slide mt-5">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active "
-          style="height: 25rem; background-image: url({% static "img/carousel/BaldursGateIII.png" %}); background-position: center; background-size: cover; background-repeat: no-repeat;">
-        </div>
-        <div class="carousel-item">
-          <img src=" {% static 'img/carousel/helldivers2.jpg'%} " class="d-block w-100  object-fit-cover " alt="..."
-            style="height: 25rem;">
-        </div>
-        <div class="carousel-item">
-          <img src="{% static "img/carousel/rust.png" %} " class="d-block w-100 object-fit-cover" alt="..." style="height: 25rem;">
+      <div class="offcanvas-body">
+        <table class="table align-middle" id="listaCarrito">
+          <thead>
+            <tr>
+              <th class="text-center">Item</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Price</th>
+              <th class="text-center">Quantity</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="d-grid gap-2">
+          <a href="#" class="btn btn-primary text-white text-center">Pay</a>
+          <a href="#" class="btn btn-secondary text-white text-center" id="vaciarCarrito">Clear</a>
         </div>
       </div>
     </div>
 
-
-    <div class="album bgh-blue text-light m-0">
-
-      <div class="quote bgh-dark-blue   text-center text-white pt-1 shadow ">
-
-      </div>
-
-      <div class="container px-4 py-5" id="listaArticulos">
-        <h2 class="pb-2 fw-bol border-bottom bolder">Best Sellers</h2>
-        <div class="row g-4 py-5 row-cols-1 row-cols-md-3 row-cols-lg-3">
-          <div class="col">
-            <div class="card">
-              <img class="card-img-top object-fit-cover " src=" {% static "img/BaldursGateIII.jpg" %}" alt=""
-                style="height: 17rem;" />
-              <div class="card-body">
-                <h5 class="card-title">Baldurs Gate III</h5>
-                <p class="card-text text-truncate" style="max-width: 100%">
-                  Baldur’s Gate 3 is a story-rich, party-based
-                  RPG set in the universe of Dungeons & Dragons, where your choices shape a tale of fellowship and
-                  betrayal, survival and sacrifice, and the lure of absolute power.
-                </p>
-                <div class="d-flex justify-content-between align-items-center price">
-                  <a href="#" class="btn btn-primary add-cart" data-id="1"> Add to Cart </a>
-                  <span class="text-black fw-bold">$99.99</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card ">
-              <img class="card-img-top object-fit-cover" src="{% static "img/helldivers2.jpg" %} " alt="" style="height: 17rem;" />
-              <div class="card-body">
-                <h5 class="card-title">HELLDIVERS 2</h5>
-                <p class="card-text text-truncate" style="max-width: 100%">
-                  The Galaxy’s Last Line of Offence. Enlist in
-                  the Helldivers and join the fight for freedom across a hostile galaxy in a fast, frantic, and
-                  ferocious third-person shooter.
-                </p>
-                <div class="d-flex justify-content-between align-items-center price">
-                  <a href="#" class="btn btn-primary add-cart" data-id="2"> Add to Cart </a>
-                  <span class="text-black fw-bold">$99.99</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card ">
-
-              <div class="card-img-top rounded-0 object-fit-contain" src="../img/gtav.jpg" alt=""
-                style="height: 17rem; background-image: url({% static "img/gtav.jpg" %}); background-position: center; background-size: cover;">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Grand Theft Auto V</h5>
-                <p class="card-text text-truncate" style="max-width: 100%">
-                  Grand Theft Auto V for PC offers players the
-                  option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k
-                  and beyond, as well as the chance to experience the game running at 60 frames per second.
-                </p>
-                <div class="d-flex justify-content-between align-items-center price">
-                  <a href="#" class="btn btn-primary add-cart" data-id="3"> Add to Cart </a>
-                  <span class="text-black fw-bold">$99.99</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <div class="bgh-darkest-blue">
-    <div class="container">
-      <footer class="py-5">
-        <div class="row">
-          <div class="col-6 col-md-2 mb-3">
-            <h5>Buy</h5>
-            <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">How to buy?</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">List of games</a></li>
-            </ul>
-          </div>
-
-          <div class="col-6 col-md-2 mb-3">
-            <h5>About Hanta</h5>
-            <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About us</a></li>
-              <li class="nav-item mb-2"><a href="./contact.html" class="nav-link p-0 text-body-secondary">Contact us</a>
+    <header>
+      <nav class="navbar navbar-expand-lg bgh-blue fixed-top">
+        <div class="container px-4 px-lg-5">
+          <a class="navbar-brand" href=" {% url "index" %} "><img src="{% static 'img/logo.png' %}" height="50" alt="Hanta Store" /></a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"><span class="navbar-toggler-icon"></span></button>
+          <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop' %}">All games</a>
               </li>
             </ul>
-          </div>
+            <div class="d-flex" style="height: 2.5rem;">
+              <input type="text" class="form-control searchHanta me-4 me-md-4 me-lg-4" placeholder="Search Game" name="" id="" />
+              <div style="width: 12rem;">
+                <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
+                  <i class="bi-cart-fill me-1"></i>
+                  Cart
+                  <span class="badge bg-white text-white ms-1 rounded-pill" id="contador"><span class="text-dark">0</span></span>
+                </button>
+              </div>
+            </div>
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
+              {% if user.is_authenticated %}
+                <div class="dropdown">
+                  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
+                    <strong>{{ user.username }}</strong>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li>
+                      <a class="dropdown-item" href="#">Settings</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Profile</a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
 
-          <div class="col-6 col-md-2 mb-3">
-            <h5>Help</h5>
-            <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Create a ticket</a></li>
+                      <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="dropdown-item" type="submit">Sing out</button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'register' %}">Sign up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+              {% endif %}
             </ul>
           </div>
+        </div>
+      </nav>
+    </header>
 
-          <div class="col-md-5 offset-md-1 mb-3">
-            <img class="img-fluid mx-auto d-block" src="{% static "img/logo.png" %}" width="300" alt="">
-            <span class="text-center d-block text-light fw-bold">© Hanta Store 2024</span>
+    <main class="bgh-dark-blue">
+      <div id="carouselExampleIndicators" class="carousel slide mt-5">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="height: 25rem; background-image: url({% static 'img/carousel/BaldursGateIII.png' %}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+          <div class="carousel-item">
+            <img src=" {% static 'img/carousel/helldivers2.jpg' %} " class="d-block w-100 object-fit-cover" alt="..." style="height: 25rem;" />
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'img/carousel/rust.png' %} " class="d-block w-100 object-fit-cover" alt="..." style="height: 25rem;" />
           </div>
         </div>
-      </footer>
+      </div>
+
+      <div class="album bgh-blue text-light m-0">
+        <div class="quote bgh-dark-blue text-center text-white pt-1 shadow"></div>
+
+        <div class="container px-4 py-5" id="listaArticulos">
+          <h2 class="pb-2 fw-bol border-bottom bolder">Best Sellers</h2>
+          <div class="row g-4 py-5 row-cols-1 row-cols-md-3 row-cols-lg-3">
+            <div class="col">
+              <div class="card">
+                <img class="card-img-top object-fit-cover" src=" {% static 'img/BaldursGateIII.jpg' %}" alt="" style="height: 17rem;" />
+                <div class="card-body">
+                  <h5 class="card-title">Baldurs Gate III</h5>
+                  <p class="card-text text-truncate" style="max-width: 100%">Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons & Dragons, where your choices shape a tale of fellowship and betrayal, survival and sacrifice, and the lure of absolute power.</p>
+                  <div class="d-flex justify-content-between align-items-center price">
+                    <a href="#" class="btn btn-primary add-cart" data-id="1">Add to Cart</a>
+                    <span class="text-black fw-bold">$99.99</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img class="card-img-top object-fit-cover" src="{% static 'img/helldivers2.jpg' %} " alt="" style="height: 17rem;" />
+                <div class="card-body">
+                  <h5 class="card-title">HELLDIVERS 2</h5>
+                  <p class="card-text text-truncate" style="max-width: 100%">The Galaxy’s Last Line of Offence. Enlist in the Helldivers and join the fight for freedom across a hostile galaxy in a fast, frantic, and ferocious third-person shooter.</p>
+                  <div class="d-flex justify-content-between align-items-center price">
+                    <a href="#" class="btn btn-primary add-cart" data-id="2">Add to Cart</a>
+                    <span class="text-black fw-bold">$99.99</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-img-top rounded-0 object-fit-contain" src="../img/gtav.jpg" alt="" style="height: 17rem; background-image: url({% static 'img/gtav.jpg' %}); background-position: center; background-size: cover;"></div>
+                <div class="card-body">
+                  <h5 class="card-title">Grand Theft Auto V</h5>
+                  <p class="card-text text-truncate" style="max-width: 100%">Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond, as well as the chance to experience the game running at 60 frames per second.</p>
+                  <div class="d-flex justify-content-between align-items-center price">
+                    <a href="#" class="btn btn-primary add-cart" data-id="3">Add to Cart</a>
+                    <span class="text-black fw-bold">$99.99</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="bgh-darkest-blue">
+      <div class="container">
+        <footer class="py-5">
+          <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Buy</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">How to buy?</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">List of games</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+              <h5>About Hanta</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">About us</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="./contact.html" class="nav-link p-0 text-body-secondary">Contact us</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Help</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Create a ticket</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-5 offset-md-1 mb-3">
+              <img class="img-fluid mx-auto d-block" src="{% static 'img/logo.png' %}" width="300" alt="" />
+              <span class="text-center d-block text-light fw-bold">© Hanta Store 2024</span>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
-    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 
-  <script src="./js/quote.js"></script>
-</body>
-
+    <script src="./js/quote.js"></script>
+  </body>
 </html>
