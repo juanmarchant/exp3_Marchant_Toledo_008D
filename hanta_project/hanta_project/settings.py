@@ -123,7 +123,8 @@ STATIC_URL = 'core/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+MEDIA_ROOT=BASE_DIR/ "media"
+MEDIA_URL = "/media/"
 
 # Login
 
