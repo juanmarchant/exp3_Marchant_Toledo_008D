@@ -33,7 +33,8 @@ def register(request):
 
 # @login_required
 def shop(request):
-    return render(request, 'shop.html')
+    data = Product.objects.all() 
+    return render(request, 'shop.html', {"data":data})
 
 def logout_view(request):
     logout(request)
