@@ -30,9 +30,9 @@
                     <tr>
                         <td><a href="{% url 'details' pr.id %}" class="btn btn-outline-info">{{ pr.id }}</a></td>
                         <td>{{ pr.title }}</td>
-                        <td>{{ pr.description }}</td>
+                        <td class='text-truncate' >{{ pr.description }}</td>
                         <td>${{ pr.our_price }}</td>
-                        <td><img src="{{ ve.imagen.url }}" style="width: 70px; height: 70px;"></td>
+                        <td><img src="{{ pr.head_image.url }}" class="object-fit-cover" style="width: 100px; height: 30px;"></td>
                         <td><a href="{% url 'modify' pr.id %}" class="btn btn-warning">Update</a></td>
                         <td><a href="{% url 'deleteProd' pr.id %}" class="btn btn-danger">Delete</a></td> 
                     </tr>

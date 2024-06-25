@@ -36,6 +36,10 @@
     border-radius: 0px !important;
 }
 
+.img-header {
+    min-height: 7rem;
+}
+
 .searchHanta {
     background-color: #1C3269 !important;
     box-shadow: none !important;
