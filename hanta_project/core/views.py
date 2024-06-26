@@ -1,8 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
-
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, ProductForm
 from .models import Product
 
 # Create your views here.
@@ -42,34 +41,61 @@ def logout_view(request):
 
 
 #CRUD
-@login_required
 def products(request):
+    if request.user.is_staff != True:
+        return redirect('/')
     data = Product.objects.all() 
     return render(request, 'crud/products.html',{"data":data})
 
 
+
+def add(request):
+
+    if request.user.is_staff != True:
+        return redirect('/')
+
+    if request.method=='POST':
+        productForm = ProductForm(request.POST, request.FILES)
+        if productForm.is_valid():
+            productForm.save()         #similar al insert into
+            return redirect ('products')
+    else:
+        productForm = ProductForm()
+    return render (request, 'crud/add.html', {'productform': productForm })
+
+
 def modify(request, id):
-    # producto = Product.objects.get(id=id)  #busca un obj por medio del id
-    # data ={
-    #     'forModificar': VehiculoForm(instance=producto), #devuelve un objeto tipo form con el vehiculo encontrado
-    #     'vehiculo': producto 
-    # }
-    # if request.method=='POST':
-    #     formulario = VehiculoForm(request.POST,request.FILES,instance=vehiculo)
-    #     if formulario.is_valid():
-    #         formulario.save()           #permite actualizar un objeto
-    #         return redirect('productos')
-    return render(request, 'crud/edit.html')
+    if request.user.is_staff != True:
+        return redirect('/')
+    
+    producto = Product.objects.get(id=id)  
+    data ={
+        'forModificar': ProductForm(instance=producto), 
+        'producto': producto 
+    }
+    if request.method=='POST':
+        formulario = ProductForm(request.POST,request.FILES,instance=producto)
+        if formulario.is_valid():
+            formulario.save()           
+            return redirect('products')
+    return render(request, 'crud/edit.html', data)
+
 
 def delete(request, id):
-    product = get_object_or_404(Product, idVehiculo=id)   #buscamos un obj por medio del id
+    if request.user.is_staff != True:
+        return redirect('/')
+    
+    product = get_object_or_404(Product, id=id)   
     if request.method=='POST':
         if 'delete' in request.POST:
-            product.delete()           #eliminamos un objeto
+            product.delete()    
             return redirect('products')
     return render(request, 'crud/delete.html', {'product': product})  
 
 
 def details(request, id):
+    if request.user.is_staff != True:
+        return redirect('/')
+    
     product = get_object_or_404(Product, id=id)   
-    return render(request, 'detalle.html', {'product': product})
+    return render(request, 'crud/details.html', {'product': product})

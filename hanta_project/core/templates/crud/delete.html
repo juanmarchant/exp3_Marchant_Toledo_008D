@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Delete</title>
+        {% load static %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <link rel="shortcut icon" href="{% static 'img/favicon/favicon.ico' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    </head>
+    
+    <body class='bgh-dark-blue'>
+        <header>
+            <nav class="navbar navbar-expand-lg bgh-blue">
+              <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href=" {% url "index" %} "><img src="{% static 'img/logo.png' %}" height="50" alt="Hanta Store" /></a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"><span class="navbar-toggler-icon"></span></button>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'shop' %}">All games</a>
+                    </li>
+                  </ul>
+                  <div class="d-flex" style="height: 2.5rem;">
+                    <input type="text" class="form-control searchHanta me-4 me-md-4 me-lg-4" placeholder="Search Game" name="" id="" />
+                    <div style="width: 12rem;">
+                      <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-white text-white ms-1 rounded-pill" id="contador"><span class="text-dark">0</span></span>
+                      </button>
+                    </div>
+                  </div>
+                  <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
+                    {% if user.is_authenticated %}
+                      <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
+                          <strong>{{ user.username }}</strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                          <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">Profile</a>
+                          </li>
+                          <li>
+                            <hr class="dropdown-divider" />
+                          </li>
+                          <li>
+      
+                            <form method="post" action="{% url 'logout' %}">
+                              {% csrf_token %}
+                              <button class="dropdown-item" type="submit">Sing out</button>
+                            </form>
+                          </li>
+                        </ul>
+                      </div>
+                    {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Sign up</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </nav>
+        </header>
+
+        <main class="container">
+
+            <h2 class='text-white mt-2'>Deleting Game</h2>
+            <br>
+
+            <form class='bg-light rounded p-2' action="#" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}            
+
+                <div class="form-group mb-3 ">
+                    <label class='fw-bold' for="idVehiculo">Id Game: </label>
+                    {{ product.id }}
+                </div>
+
+                <div class="form-group mb-3 ">
+                    <label class='fw-bold' for="marca">Title Game: </label>
+                    {{ product.title }}
+                </div>
+
+                <div class="form-group mb-3 ">
+                    <label class='fw-bold' for="modelo">Description Game: </label>
+                    {{ product.description }}
+                </div>
+
+                <img src="{{ product.head_image.url }}" width="200px"> <br>
+                <div class="form-group ">
+                    <label class='fw-bold' for="imagen">Image: </label>
+                    {{ product.head_image }}
+                </div>
+                <br>
+                
+                <input type="submit" value="Confirm" name="delete" class="btn btn-danger">
+                <a href="{% url 'products' %}" class="btn btn-primary">Products</a>
+            </form>
+
+
+
+
+        </main>
+
+    
+</body>
+</html>

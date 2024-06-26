@@ -1,8 +1,12 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
-
+def custom_upload_to_avatar(instance, filename):
+    old_instance = Profile.objects.get(pk=instance.pk)
+    old_instance.avatar.delete()
+    
+    return 'profiles/avatar/' + filename
 
 
 def custom_upload_head_image(instance, filename):
@@ -23,4 +27,9 @@ class Product(models.Model):
     
     def __str__(self):
         return self.title
-    
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to=custom_upload_to_avatar, null=True, blank=True)
