@@ -16,29 +16,16 @@
 <body class="bg-body-secondary">
     <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito">
         <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Cart</h5>
+            <h5 id="offcanvasRightLabel"></h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body">
-            <table class="table align-middle" id="listaCarrito">
-                <thead>
-                    <tr>
-                        <th class="text-center">Item</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Quantity</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <div class="d-grid gap-2">
-                <a href="#" class="btn btn-primary text-white text-center">Pay by credit card</a>
-                <a href="#" class="btn btn-secondary text-white text-center" id="vaciarCarrito">Clear</a>
-            </div>
+            {% include "carrito.html" %}
         </div>
     </div>
+
     <header>
         <nav class="navbar navbar-expand-lg bgh-blue fixed-top">
             <div class="container px-4 px-lg-5 ">
@@ -63,9 +50,6 @@
                                 data-bs-target="#carrito" aria-controls="carrito">
                                 <i class="bi-cart-fill me-1"></i>
                                 Cart
-                                <span class="badge bg-white text-white ms-1 rounded-pill" id="contador">
-                                    <span class="text-dark">0</span>
-                                </span>
                             </button>
                         </div>
                     </div>
@@ -116,6 +100,7 @@
                                         GLOBAL
                                     </p>
                                     <p class="fw-bold fs-4 text-start price">{{element.our_price}} USD</p>
+                                    <a href="{% url 'agregar' element.id %}" class="btn btn-outline-primary">Add to cart</a>
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,9 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('shop/', views.shop, name='shop'),
     path("register/", views.register, name="register"),
-    path('logout/', views.logout_view, name='logout')
-
+    path('logout/', views.logout_view, name='logout'),
+    path('agregar/<id>', views.agregar_producto, name="agregar"),
+    path('restar/<id>', views.restar_producto, name="restar"),
+    path('limpiar/', views.limpiar_producto, name="limpiar"),
+    path('generarBoleta/', views.generarBoleta,name="generarBoleta"),
 ]
