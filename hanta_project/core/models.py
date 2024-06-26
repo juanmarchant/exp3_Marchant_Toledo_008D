@@ -1,4 +1,6 @@
 from django.db import models
+import datetime
+
 from django.contrib.auth.models import User
 # Create your models here.
 
@@ -27,7 +29,25 @@ class Product(models.Model):
     
     def __str__(self):
         return self.title
+    
+class Receipt(models.Model):
+    receipt_id=models.AutoField(primary_key=True)
+    total=models.BigIntegerField()
+    dateBuy=models.DateTimeField(blank=False, null=False, default = datetime.datetime.now)
+    status = models.CharField(max_length=20, blank=True, null=True)
+  
+    def __str__(self):
+        return str(self.receipt_id)
 
+class receiptDetails(models.Model):
+    receipt_id = models.ForeignKey('Receipt', blank=True, on_delete=models.CASCADE)
+    receipt_id_Details = models.AutoField(primary_key=True)
+    product_id = models.ForeignKey('Product', on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    subtotal = models.BigIntegerField()
+
+    def __str__(self):
+        return str(self.receipt_id_Details)
 
 
 class Profile(models.Model):

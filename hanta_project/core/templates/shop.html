@@ -16,29 +16,16 @@
 <body class="bg-body-secondary">
     <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito">
         <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Cart</h5>
+            <h5 id="offcanvasRightLabel"></h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body">
-            <table class="table align-middle" id="listaCarrito">
-                <thead>
-                    <tr>
-                        <th class="text-center">Item</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Quantity</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <div class="d-grid gap-2">
-                <a href="#" class="btn btn-primary text-white text-center">Pay by credit card</a>
-                <a href="#" class="btn btn-secondary text-white text-center" id="vaciarCarrito">Clear</a>
-            </div>
+            {% include "carrito.html" %}
         </div>
     </div>
+
     <header>
         <nav class="navbar navbar-expand-lg bgh-blue fixed-top">
           <div class="container px-4 px-lg-5">
@@ -103,6 +90,36 @@
               </ul>
             </div>
           </div>
+            <div class="container px-4 px-lg-5 ">
+                <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" height="50"
+                        alt="Hanta Store"></a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"><span
+                        class="navbar-toggler-icon "></span></button>
+                <div class="navbar-collapse collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 ">
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">All games</a></li>
+                    </ul>
+                    <div class="d-flex" style="height: 2.5rem;">
+                        <input type="text" class="form-control me-4 me-md-4 me-lg-4 shadow-none "
+                            placeholder="Search Game" name="" id="">
+                        <div style="width: 12rem;">
+                            <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#carrito" aria-controls="carrito">
+                                <i class="bi-cart-fill me-1"></i>
+                                Cart
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4 ">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Sign up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                </div>
+            </div>
         </nav>
       </header>
 
@@ -145,6 +162,7 @@
                                         GLOBAL
                                     </p>
                                     <p class="fw-bold fs-4 text-start price">{{element.our_price}} USD</p>
+                                    <a href="{% url 'agregar' element.id %}" class="btn btn-outline-primary">Add to cart</a>
                                 </div>
                             </div>
                         </div>
