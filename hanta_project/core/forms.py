@@ -5,8 +5,12 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import PasswordInput
-from .models import Product
+from .models import Product, Profile
 
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar']
 
 class ProductForm(forms.ModelForm):
     class Meta: 

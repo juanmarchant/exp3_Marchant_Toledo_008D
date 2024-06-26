@@ -4,10 +4,25 @@ from django.contrib.auth import logout, authenticate, login
 from .forms import RegisterUserForm, ProductForm
 from .models import Product
 from core.compras import Carrito
-from .forms import RegisterUserForm
-from .models import Product, Receipt, receiptDetails
+from .forms import RegisterUserForm, ProfileForm
+from .models import Product, Receipt, receiptDetails, Profile
 
 # Create your views here.
+
+
+@login_required
+def profile(request):
+    profile = request.user.profile
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'profile/profile_form.html', {'form': form})
+
+
 def index(request):
     return render(request, 'index.html')
 
@@ -24,7 +39,8 @@ def register(request):
     if request.method == 'POST':
         formy = RegisterUserForm(data=request.POST)
         if formy.is_valid():
-            formy.save()
+            user = formy.save()
+            Profile.objects.create(user=user)
             user = authenticate(username= formy.cleaned_data['username'] ,
             password = formy.cleaned_data['password1'] )
             login(request, user)
@@ -127,6 +143,7 @@ def limpiar_producto(request):
     carrito_compra.limpiar()
     return redirect('shop')
 
+@login_required
 def generarBoleta(request):
     total_price=0
     for key, value in request.session['carrito'].items():

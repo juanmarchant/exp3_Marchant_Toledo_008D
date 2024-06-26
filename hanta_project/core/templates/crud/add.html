@@ -15,7 +15,7 @@
 <body>
     
     <header>
-        <nav class="navbar navbar-expand-lg bgh-blue mb-3">
+        <nav class="navbar navbar-expand-lg bgh-blue ">
           <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href=" {% url "index" %} "><img src="{% static 'img/logo.png' %}" height="50" alt="Hanta Store" /></a>
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"><span class="navbar-toggler-icon"></span></button>
@@ -37,7 +37,6 @@
                   <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
-                    <span class="badge bg-white text-white ms-1 rounded-pill" id="contador"><span class="text-dark">0</span></span>
                   </button>
                 </div>
               </div>
@@ -45,16 +44,25 @@
                 {% if user.is_authenticated %}
                   <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
+                      {% if request.user.profile.avatar%}
+                          <img src="{{ request.user.profile.avatar.url }}" class="me-2" width="30px" height="30px" style="border-radius: 50%;"alt="">
+                      {% else %}
+                          <i class="bi bi-person-circle fs-3 texty-lessblue me-2"></i>
+                      {% endif %}
                       <strong>{{ user.username }}</strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+  
+                      {% if  request.user.is_authenticated%}
                       <li>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="{% url "profile" %}">Profile</a>
                       </li>
+                      {% endif %}
+                      {% if request.user.is_staff %}
                       <li>
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="{% url "products" %}">Products</a>
                       </li>
+                      {% endif %}
                       <li>
                         <hr class="dropdown-divider" />
                       </li>
@@ -80,6 +88,7 @@
           </div>
         </nav>
       </header>
+
     <main class="container">
         <h2>Create Game</h2>
         <br>
