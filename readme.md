@@ -5,8 +5,8 @@
 # Credenciales
 
 ```
-username: admin
-password: admin123
+username: sebastian  
+password: 123
 ```
 
 # Bash
