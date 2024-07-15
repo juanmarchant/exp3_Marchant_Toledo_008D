@@ -16,6 +16,18 @@
 
 <body>
 
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel"></h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+        {% include "carrito.html" %}
+    </div>
+  </div>
+
   <header>
     <nav class="navbar navbar-expand-lg bgh-blue fixed-top">
       <div class="container px-4 px-lg-5">
@@ -34,9 +46,12 @@
             </li>
           </ul>
           <div class="d-flex" style="height: 2.5rem;">
-            <input type="text" class="form-control searchHanta me-4 me-md-4 me-lg-4" placeholder="Search Game" name="" id="" />
+            <form action="/search/" method="{% url "search" %}">
+              {% csrf_token %}
+              <input type="text" class="form-control searchHanta me-4 me-md-4 me-lg-4 " placeholder="Search Game" value='' name="q" id="" />
+            </form>              
             <div style="width: 12rem;">
-              <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
+              <button class="btn btn-outline-light ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
                 <i class="bi-cart-fill me-1"></i>
                 Cart
               </button>
@@ -58,6 +73,9 @@
                   {% if  request.user.is_authenticated%}
                   <li>
                     <a class="dropdown-item" href="{% url "profile" %}">Profile</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url "orders" %}">Orders</a>
                   </li>
                   {% endif %}
                   {% if request.user.is_staff %}

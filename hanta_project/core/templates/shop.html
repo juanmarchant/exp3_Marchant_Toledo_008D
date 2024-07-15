@@ -14,6 +14,7 @@
 </head>
 
 <body class="bg-body-secondary">
+
     <div class="offcanvas offcanvas-end" tabindex="-1" id="carrito">
         <div class="offcanvas-header">
             <h5 id="offcanvasRightLabel"></h5>
@@ -27,81 +28,120 @@
     </div>
 
     <header>
-        <nav class="navbar navbar-expand-lg bgh-blue fixed-top">
-          <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href=" {% url "index" %} "><img src="{% static 'img/logo.png' %}" height="50" alt="Hanta Store" /></a>
-            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"><span class="navbar-toggler-icon"></span></button>
-            <div class="navbar-collapse collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'about' %}">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'shop' %}">All games</a>
-                </li>
-              </ul>
-              <div class="d-flex" style="height: 2.5rem;">
-                <input type="text" class="form-control searchHanta me-4 me-md-4 me-lg-4" placeholder="Search Game" name="" id="" />
-                <div style="width: 12rem;">
-                  <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
-                    <i class="bi-cart-fill me-1"></i>
-                    Cart
-                  </button>
-                </div>
+      <nav class="navbar navbar-expand-lg bgh-blue fixed-top">
+        <div class="container px-4 px-lg-5">
+          <a class="navbar-brand" href=" {% url "index" %} "><img src="{% static 'img/logo.png' %}" height="50" alt="Hanta Store" /></a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"><span class="navbar-toggler-icon"></span></button>
+          <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop' %}">All games</a>
+              </li>
+            </ul>
+            <div class="d-flex" style="height: 2.5rem;">
+              <form action="/search/" method="{% url "search" %}">
+                {% csrf_token %}
+                <input type="text" class="form-control searchHanta me-4 me-md-4 me-lg-4 " placeholder="Search Game" value='' name="q" id="" />
+              </form>              
+              <div style="width: 12rem;">
+                <button class="btn btn-outline-light ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#carrito" aria-controls="carrito">
+                  <i class="bi-cart-fill me-1"></i>
+                  Cart
+                </button>
               </div>
-              <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
-                {% if user.is_authenticated %}
-                  <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      {% if request.user.profile.avatar%}
-                          <img src="{{ request.user.profile.avatar.url }}" class="me-2" width="30px" height="30px" style="border-radius: 50%;"alt="">
-                      {% else %}
-                          <i class="bi bi-person-circle fs-3 texty-lessblue me-2"></i>
-                      {% endif %}
-                      <strong>{{ user.username }}</strong>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-  
-                      {% if  request.user.is_authenticated%}
-                      <li>
-                        <a class="dropdown-item" href="{% url "profile" %}">Profile</a>
-                      </li>
-                      {% endif %}
-                      {% if request.user.is_staff %}
-                      <li>
-                        <a class="dropdown-item" href="{% url "products" %}">Products</a>
-                      </li>
-                      {% endif %}
-                      <li>
-                        <hr class="dropdown-divider" />
-                      </li>
-                      <li>
-  
-                        <form method="post" action="{% url 'logout' %}">
-                          {% csrf_token %}
-                          <button class="dropdown-item" type="submit">Sing out</button>
-                        </form>
-                      </li>
-                    </ul>
-                  </div>
-                {% else %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Sign up</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                  </li>
-                {% endif %}
-              </ul>
             </div>
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
+              {% if user.is_authenticated %}
+                <div class="dropdown">
+                  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if request.user.profile.avatar%}
+                        <img src="{{ request.user.profile.avatar.url }}" class="me-2" width="30px" height="30px" style="border-radius: 50%;"alt="">
+                    {% else %}
+                        <i class="bi bi-person-circle fs-3 texty-lessblue me-2"></i>
+                    {% endif %}
+                    <strong>{{ user.username }}</strong>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+
+                    {% if  request.user.is_authenticated%}
+                    <li>
+                      <a class="dropdown-item" href="{% url "profile" %}">Profile</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url "orders" %}">Orders</a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_staff %}
+                    <li>
+                      <a class="dropdown-item" href="{% url "products" %}">Products</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+
+                      <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="dropdown-item" type="submit">Sing out</button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'register' %}">Sign up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+              {% endif %}
+            </ul>
           </div>
-        </nav>
-      </header>
+        </div>
+      </nav>
+    </header>
 
     <section class="container mt-5 py-5 ">
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+
+            <li class="page-item">
+              {% if page_obj.has_previous %}
+                  <a class="page-link d-block-inline" href="?page=1">&laquo; First</a>
+                  
+              {% endif %}
+            </li>
+            <li class="page-item">
+              {% if page_obj.has_previous %}
+                <a class="page-link d-block-inline" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+              {% endif %}
+            </li>
+            <li class="page-item">
+              <div class="page-link d-block-inline">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</div> 
+            </li>
+            <li class="page-item">
+
+              {% if page_obj.has_next %}
+                <a class="page-link d-block-inline" href="?page={{ page_obj.next_page_number }}">Next</a>
+              {% endif %}
+
+            </li>
+            <li class="page-item">
+              {% if page_obj.has_next %}
+                  <a class="page-link d-block-inline" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+              {% endif %}
+            </li>
+          </ul>
+        </nav>
+
         <div class="row row-cols-1 p-5 ">
             <div class="col col-lg-3 rounded">
                 <div class="bg-white p-3 rounded border border-3">
@@ -129,7 +169,7 @@
             <div class="col col-lg-9 min-vh-100 ">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 " id="gamesGrid">
 
-                    {% for element in data %}
+                    {% for element in page_obj %}
                         <div class="col rounded p-2">
                             <div class="shadow rounded product">
                                 <img src={{element.head_image.url}} class="w-100 rounded-top img-header" alt="" >
@@ -149,6 +189,11 @@
             </div>
         </div>
     </section>
+
+    
+    
+
+    
 
     <!-- Modal -->
     <div class="modal fade" tabindex="-1" id="modalProduct">

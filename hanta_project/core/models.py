@@ -35,12 +35,13 @@ class Receipt(models.Model):
     total=models.BigIntegerField()
     dateBuy=models.DateTimeField(blank=False, null=False, default = datetime.datetime.now)
     status = models.CharField(max_length=20, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receipts',  null=True, blank=True)
   
     def __str__(self):
         return str(self.receipt_id)
 
 class receiptDetails(models.Model):
-    receipt_id = models.ForeignKey('Receipt', blank=True, on_delete=models.CASCADE)
+    receipt_id = models.ForeignKey('Receipt', related_name='details' , blank=True, on_delete=models.CASCADE)
     receipt_id_Details = models.AutoField(primary_key=True)
     product_id = models.ForeignKey('Product', on_delete=models.CASCADE)
     quantity = models.IntegerField()
